@@ -7,30 +7,54 @@
              >
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label">
-                <Setter Property="FontFamily" Value="sans-serif"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="HorizontalTextAlignment" Value="Start"/>
-                <Setter Property="Padding" Value="15,0,0,0"/>
+        <Style x:Key="CustomLabelStyle" TargetType="Label" >
+            <Setter Property="FontFamily" Value="sans-serif"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
+        
+        <Style x:Key="CustomEntryStyle" TargetType="Entry">
+            <Setter Property="FontFamily" Value="sans-serif"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+             <Setter Property="TextTransform" Value="Uppercase"/>
+              
+            </Style>
+
         </ResourceDictionary>
+
     </ContentPage.Resources>
     <ContentPage.Content>
         
-    <StackLayout>
+    <StackLayout Padding="15" BackgroundColor="WhiteSmoke">
         <Label Text="Utitlity Bill Calculator" 
                FontSize="30" 
                HorizontalTextAlignment="Center"
-               Padding="30,0,0,10"/>
+               />
+<!--Title of the Page-->
+        <Label Text="Choose Your Province" 
+               Style="{StaticResource CustomLabelStyle}"/>
+         <Entry x:Name="provinceName"
+                Style="{StaticResource CustomEntryStyle}"/>
+         <Label Text="Daytime usage (kwh)" Style="{StaticResource CustomLabelStyle}"/>
+            <Entry x:Name="dTime" 
+                   Style="{StaticResource CustomEntryStyle}"
+                   ClearButtonVisibility="WhileEditing"/>
+         <Label Text="Evening usage (kwh)" Style="{StaticResource CustomLabelStyle}" />
+            <Entry x:Name="eTime" 
+                   ClearButtonVisibility="WhileEditing"
+                   Style="{StaticResource CustomEntryStyle}"
+                  
+                   />
 
-        <Label Text="Choose Your Province" />
-        <Label Text="Daytime usage (kwh)" />
-        <Label Text="Evening usage (kwh)"  />
-        
-        <!--Caption and Switch for Renewable enery source-->
+            <!--Caption and Switch for Renewable enery source-->
         <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
-        <Label Text="Did you use a renewable energy source?"  />
-            <Switch IsToggled="False"/>
+                <Label Text="Did you use a renewable energy source ?"
+                       Style="{StaticResource CustomLabelStyle}" 
+                       LineBreakMode="WordWrap"
+                       MaxLines="2"/>
+                <Switch IsToggled="False"/>
         </FlexLayout>
         
         <!--Flex layout for buttons-->
