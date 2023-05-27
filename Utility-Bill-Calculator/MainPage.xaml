@@ -5,26 +5,41 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
              >
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="sans-serif"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="Padding" Value="15,0,0,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        
     <StackLayout>
-        <Label Text="Utitlity Bill Calculator" FontSize="Title" HorizontalTextAlignment="Center"/>
+        <Label Text="Utitlity Bill Calculator" 
+               FontSize="30" 
+               HorizontalTextAlignment="Center"
+               Padding="30,0,0,10"/>
 
-        <Label Text="Choose Your Province" FontSize="Caption" />
-        <Label Text="Daytime usage (kwh)" FontSize="Caption" />
-        <Label Text="Evening usage (kwh)" FontSize="Caption" />
+        <Label Text="Choose Your Province" />
+        <Label Text="Daytime usage (kwh)" />
+        <Label Text="Evening usage (kwh)"  />
         
         <!--Caption and Switch for Renewable enery source-->
         <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
-        <Label Text="Did you use a renewable energy source?" FontSize="Caption" />
+        <Label Text="Did you use a renewable energy source?"  />
             <Switch IsToggled="False"/>
         </FlexLayout>
         
         <!--Flex layout for buttons-->
-        <FlexLayout Direction="Row" JustifyContent="SpaceAround" AlignContent="Center">
+            <FlexLayout Direction="Row" AlignContent="Center" JustifyContent="Center" >
             <Button Text="Calculate"/>
             <Button Text="Reset"/>
         </FlexLayout>
         
     </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>
