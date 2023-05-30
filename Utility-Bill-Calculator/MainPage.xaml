@@ -35,9 +35,15 @@
 <!--Title of the Page-->
         <Label Text="Choose Your Province" 
                Style="{StaticResource CustomLabelStyle}"/>
-         <Entry x:Name="provinceName"
-                Style="{StaticResource CustomEntryStyle}"/>
-         <Label Text="Daytime usage (kwh)" Style="{StaticResource CustomLabelStyle}"/>
+            
+            <Picker x:Name="province" 
+                    Title="Choose your Province"
+                    TitleColor="Red"
+                    SelectedItem="province_selected">
+               
+
+            </Picker>
+            <Label Text="Daytime usage (kwh)" Style="{StaticResource CustomLabelStyle}"/>
             <Entry x:Name="dTime" 
                    Style="{StaticResource CustomEntryStyle}"
                    ClearButtonVisibility="WhileEditing"/>
@@ -59,11 +65,25 @@
         
         <!--Flex layout for buttons-->
             <FlexLayout Direction="Row" AlignContent="Center" JustifyContent="Center" >
-            <Button Text="Calculate"/>
-            <Button Text="Reset"/>
+            <Button Text="Calculate" Clicked="Btn_Calculate"/>
+            <Button Text="Reset" Clicked="Btn_Reset"/>
         </FlexLayout>
         
-    </StackLayout>
+        <!-- ERROR FIELDS!! -->
+            <Label x:Name="errors" Text=""/>
+        <!-- Displaying Bill -->
+            <StackLayout>
+                <Label x:Name="titleForBreakdown" FontSize="Title" Text="" HorizontalTextAlignment="Center"/>
+                <Label x:Name="dCharges" Text=""/>
+                <Label x:Name="eCharges" Text=""/>
+                <Label x:Name="totalCharges" Text=""/>
+                <Label x:Name="salesTax" Text=""/>
+                <Label x:Name="rebate" Text=""/>
+
+            </StackLayout>
+        </StackLayout>
+        
+
     </ContentPage.Content>
 
 </ContentPage>
