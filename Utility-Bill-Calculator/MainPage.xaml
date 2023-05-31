@@ -39,7 +39,8 @@
             <Picker x:Name="province" 
                     Title="Choose your Province"
                     TitleColor="Red"
-                    SelectedIndexChanged="provinceSelected">
+                    SelectedIndexChanged="provinceSelected"
+>
                
 
             </Picker>
@@ -59,7 +60,7 @@
                 <Label Text="Did you use a renewable energy source ?"
                        Style="{StaticResource CustomLabelStyle}" 
                        LineBreakMode="WordWrap"
-                       MaxLines="2"/>
+                       MaxLines="3"/>
                 <Switch
                     x:Name="isRenewable"
                     IsToggled="true"
@@ -73,18 +74,73 @@
         </FlexLayout>
         
         <!-- ERROR FIELDS!! -->
-            <Label x:Name="errors" Text=""/>
-        <!-- Displaying Bill -->
+            <Label x:Name="errors" 
+                   Text=""
+                   FontSize="18"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" 
+                   />
+            <!-- Displaying Bill -->
             <StackLayout>
-                <Label x:Name="titleForBreakdown" FontSize="Title" Text="" HorizontalTextAlignment="Center"/>
-                <Label x:Name="dCharges" Text=""/>
-                <Label x:Name="eCharges" Text=""/>
-                <Label x:Name="totalCharges" Text=""/>
-                <Label x:Name="salesTax" Text=""/>
-                <Label x:Name="rebate" Text=""/>
-                <Label x:Name="finalBill" Text=""/>
+                <Label x:Name="titleForBreakdown"
+           FontSize="24"
+           Text=""
+           HorizontalTextAlignment="Center"
+           TextColor="#333333"
+           FontAttributes="Bold"
+           Margin="0,20,0,10" />
 
+                <Label x:Name="dCharges"
+           Text=""
+           FontSize="18"
+           TextColor="#666666"
+           Margin="0,0,0,10" />
+
+                <Label x:Name="eCharges"
+           Text=""
+           FontSize="18"
+           TextColor="#666666"
+           Margin="0,0,0,10" />
+
+                <Label x:Name="totalCharges"
+           Text=""
+           FontSize="18"
+           TextColor="#666666"
+           Margin="0,0,0,10" />
+
+                <Label x:Name="salesTax"
+           Text=""
+           FontSize="18"
+           TextColor="#666666"
+           Margin="0,0,0,10" />
+
+                <Label x:Name="rebate"
+           Text=""
+           FontSize="18"
+           TextColor="#666666"
+           Margin="0,0,0,10" />
+
+             <Frame 
+                x:Name="frameForBill"
+                BackgroundColor="#FFFFFF"
+                BorderColor="#FFFFFF"
+                CornerRadius="5"
+                Padding="10"
+                Margin="0,0,0,10"
+                 IsVisible="false">
+
+               <Label x:Name="finalBill"
+               Text=""
+               FontSize="24"
+               TextColor="#FFFFFF"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+                </Frame>
             </StackLayout>
+
         </StackLayout>
         
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -37,9 +38,14 @@ namespace Utility_Bill_Calculator
         // Province selected from Picker
         private void provinceSelected(System.Object sender, EventArgs e)
             {
-            string selectedValue = province.SelectedItem.ToString();
             int selectedIndex = province.SelectedIndex;
             Console.WriteLine($"Selcted Item Index: {selectedIndex}");
+
+            if (selectedIndex != -1)
+                {
+
+            string selectedValue = province.SelectedItem.ToString();
+
             Console.WriteLine($"Selected Item: {selectedValue}");
 
             // If Province is "BC", set the switch to True
@@ -53,8 +59,8 @@ namespace Utility_Bill_Calculator
                 isRenewable.IsToggled = false;
                 }
             }
+         }
         
-        // Event handling for Switch
        
 
         // Calculate Btn clicked
@@ -64,9 +70,8 @@ namespace Utility_Bill_Calculator
 
             // Get the Province name
             int provinceIndex = province.SelectedIndex;
-            string provinceName = province.SelectedItem.ToString();
+
             Console.WriteLine($"Selcted Item Index: {provinceIndex}");
-            Console.WriteLine($"Selected Item: {provinceName}");
 
             double dayTimeCharges, eveningCharges;
             if (provinceIndex == -1)
@@ -81,6 +86,9 @@ namespace Utility_Bill_Calculator
                 }
             else
                 {
+                 string provinceName = province.SelectedItem.ToString();
+                 Console.WriteLine($"Selected Item: {provinceName}");
+                errors.Text = "";
                 bool success_day = Double.TryParse(dTime.Text, out dayTimeCharges);
                 bool success_evening = Double.TryParse(eTime.Text, out eveningCharges);
                 Console.WriteLine($"DayTime value is: ${dTime.Text}");
@@ -117,16 +125,17 @@ namespace Utility_Bill_Calculator
 
                         rebateAmount = (REBATE_PERCENTAGE / 100) * totalUsageCharges;
                         }
-
+                    frameForBill.IsVisible = true;
                     utilityBill = totalUsageCharges + taxAmount - rebateAmount;
-
+                    Color redColor = Color.FromHex("#FF0000");
+                    frameForBill.BackgroundColor = redColor;
                     titleForBreakdown.Text = "Charge Breakdwon";
-                    dCharges.Text = $"Daytime Usage Charges: ${dayTimeCharges}";
-                    eCharges.Text = $"Daytime Usage Charges: ${eveningCharges}";
-                    totalCharges.Text = $"Total Charges: ${totalUsageCharges}";
-                    salesTax.Text = $"Sales Tax({taxPercentage})%: ${taxAmount}";
-                    rebate.Text = $"Environmental Rebate: -${rebateAmount}";
-                    finalBill.Text = $"You must Pay: ${utilityBill}";
+                    dCharges.Text = $"Daytime Usage Charges: ${Math.Round(dayTimeCharges,2)}";
+                    eCharges.Text = $"Daytime Usage Charges: ${Math.Round(eveningCharges,2)}";
+                    totalCharges.Text = $"Total Charges: ${Math.Round(totalUsageCharges,2)}";
+                    salesTax.Text = $"Sales Tax({taxPercentage})%: ${Math.Round(taxAmount, 2)}";
+                    rebate.Text = $"Environmental Rebate: -${Math.Round(rebateAmount, 2)}";
+                    finalBill.Text = $"You must Pay: ${Math.Round(utilityBill, 2)}";
                     }
                 else
                     {
@@ -141,13 +150,16 @@ namespace Utility_Bill_Calculator
             {
             Console.WriteLine($"Reset Button Pressed");
             province.SelectedIndex = -1;
+            titleForBreakdown.Text = "";
+            dCharges.Text = "";
+            eCharges.Text = "";
             dTime.Text = "";
             eTime.Text = "";
             errors.Text = "";
             totalCharges.Text = "";
             salesTax.Text = "";
             rebate.Text = "";
-           isRenewable.IsToggled = true;
+            isRenewable.IsToggled = true;
             finalBill.Text = "";
             }
         }   
