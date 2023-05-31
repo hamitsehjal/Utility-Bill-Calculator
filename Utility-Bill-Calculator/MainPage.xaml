@@ -39,7 +39,7 @@
             <Picker x:Name="province" 
                     Title="Choose your Province"
                     TitleColor="Red"
-                    SelectedItem="province_selected">
+                    SelectedIndexChanged="provinceSelected">
                
 
             </Picker>
@@ -55,12 +55,15 @@
                    />
 
             <!--Caption and Switch for Renewable enery source-->
-        <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+        <FlexLayout Direction="{OnPlatform Android=Row, iOS=Column}" JustifyContent="SpaceBetween">
                 <Label Text="Did you use a renewable energy source ?"
                        Style="{StaticResource CustomLabelStyle}" 
                        LineBreakMode="WordWrap"
                        MaxLines="2"/>
-                <Switch IsToggled="False"/>
+                <Switch
+                    x:Name="isRenewable"
+                    IsToggled="true"
+                    />
         </FlexLayout>
         
         <!--Flex layout for buttons-->
@@ -79,6 +82,7 @@
                 <Label x:Name="totalCharges" Text=""/>
                 <Label x:Name="salesTax" Text=""/>
                 <Label x:Name="rebate" Text=""/>
+                <Label x:Name="finalBill" Text=""/>
 
             </StackLayout>
         </StackLayout>
